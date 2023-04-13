@@ -1,0 +1,51 @@
+import java.util.*;
+class Solution {
+    public int maximumValue(String[] a) {
+         int max_len=0;
+         int t=0;
+         int n=a.length;
+         for(int i=0;i<n;i++)
+         {
+             int count=0;
+             for(int k=0;k<a[i].length();k++)
+             {
+                  if(Character.isDigit(a[i].charAt(k)))
+                  {
+                      count=count+1;
+                  }
+             }
+            //  if(Character.isDigit(a[i].charAt(0)))
+            if(count>=a[i].length())
+             {
+                  t=a[i].length();
+                  int num=Integer.parseInt(a[i]);
+                   if(num>max_len)
+                       max_len=num;    
+             }
+             else
+             {
+                 t=a[i].length();
+                 if(t>max_len)
+                      max_len=t;
+             }
+         }    
+         return max_len;
+    }
+
+    public static void main(String gg[]) {
+         Scanner sc=new Scanner(System.in);
+         int n=sc.nextInt();
+         String a[]=new String[n];
+         
+         for(int i=0;i<n;i++)
+         {
+             String st=sc.next();
+             a[i]=st;
+         }
+         
+        //  int length=maximumValue(a);
+        Solution s=new Solution();
+        int length=s.maximumValue(a);
+        System.out.println(length);
+    }
+}
