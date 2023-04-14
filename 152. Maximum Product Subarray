@@ -1,0 +1,30 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int max=0;
+        if(nums.length==1)
+        {
+            max=nums[0];
+            return max;
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+            int prod=nums[i];
+           
+            for(int j=i+1;j<nums.length;j++)
+            {
+                   
+                 prod=prod*nums[j];
+                 if(prod>max)
+                     max=prod;
+            
+            }
+        }
+        for(int k=0;k<nums.length;k++)
+        {
+            if(nums[k]>max)
+                max=nums[k];
+        }
+        
+        return max;
+    }
+}
