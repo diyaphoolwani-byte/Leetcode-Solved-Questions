@@ -1,0 +1,33 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+     List<Integer> list1 = new ArrayList<Integer> (); 
+     int count;
+	   int max=0;
+	   int num=0;
+	   for(int i=0;i<nums.length;i++)
+	   {
+		   count=1;
+			 max=0;
+		   for(int j=i+1;j<nums.length;j++)
+		   {
+			   if(nums[i]==nums[j])
+			   {
+				   count++;
+			   }
+		   }
+		   if(count>max)
+		   {
+			   max=count;
+			   num=nums[i];
+		   }
+      if(max>(double)nums.length/3)
+	    {
+		        if(list1.indexOf(num)<0)
+                {
+					list1.add(num);
+				}   
+	    }
+	   }
+       return list1;
+    }
+}
