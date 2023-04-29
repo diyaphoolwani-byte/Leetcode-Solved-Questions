@@ -1,0 +1,29 @@
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int n=nums.length;
+        int sumleft[]=new int[n];
+        int sumright[]=new int[n];
+        int sum1=0;
+        int index=-1;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum1=sum1+nums[i];
+            sumleft[i]=sum1;
+        }
+        sum1=0;
+        for(int j=nums.length-1;j>=0;j--)
+        {
+            sum1=sum1+nums[j];
+            sumright[j]=sum1;
+        }
+        for(int k=0;k<sumleft.length;k++)
+        {
+            if(sumleft[k]==sumright[k])
+            {
+                   index=k;
+                   break;
+            }
+        }
+        return index;
+    }
+}
