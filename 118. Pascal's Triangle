@@ -1,0 +1,23 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> parent = new ArrayList<>();
+        for(int i=0;i<numRows;i++)
+        {
+            List<Integer> child1=new ArrayList<Integer>();
+            for(int j=0;j<=i;j++)
+            {
+                if(j==0||j==i)
+                {
+                    child1.add(1);
+                }
+                else
+                {
+                    int sum=parent.get(i-1).get(j-1)+parent.get(i-1).get(j);
+                    child1.add(sum);
+                }
+            }
+            parent.add(child1);
+        }
+        return parent;
+    }
+}
