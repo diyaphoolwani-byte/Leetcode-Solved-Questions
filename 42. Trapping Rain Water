@@ -1,0 +1,35 @@
+class Solution {
+    public int trap(int[] height) {
+
+        int n=height.length;
+
+        // calculate leftmax boundary
+        int leftmax[]=new int[height.length];
+        leftmax[0]=height[0];
+        for(int i=1;i<height.length;i++)
+        {
+            leftmax[i]=Math.max(leftmax[i-1],height[i]);
+        }
+
+        // Calculate rightmax boundary array
+        int rightmax[]=new int[height.length];
+        rightmax[n-1]=height[n-1];
+        for(int j=n-2;j>=0;j--)
+        {
+            rightmax[j]=Math.max(rightmax[j+1],height[j]);
+        }
+
+        int totaltw=0;
+        // loop
+        for(int k=0;k<n;k++)
+        {
+            // waterlevel=min of leftmax[i] and rightmax[i]
+            int waterlevel=Math.min(leftmax[k],rightmax[k]);
+
+            // trappedwater=()waterlevel-height)*width;
+            totaltw+=waterlevel-height[k];
+        }
+
+        return totaltw;
+    }
+}
