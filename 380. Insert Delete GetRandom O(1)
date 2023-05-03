@@ -1,0 +1,42 @@
+class RandomizedSet {
+   HashMap <Integer,Integer> hmap;
+   ArrayList<Integer> arr;
+    public RandomizedSet() {
+       hmap=new HashMap<Integer,Integer>();
+       arr=new ArrayList<Integer>();
+    }
+    
+    public boolean insert(int val) {
+        if(hmap.get(val)!=null)
+            return false;
+        int s=arr.size();
+        hmap.put(val,s);
+        arr.add(val);
+        return true;
+    }
+    
+    public boolean remove(int val) {
+        Integer index=hmap.get(val);
+        if(index==null || index==-1)
+             return false;
+        int size=arr.size();
+        Integer last=arr.get(size-1);//last element
+        Collections.swap(arr,index,size-1);
+        
+        hmap.put(last,index);
+        hmap.remove(val);
+        arr.remove(size-1);
+        return true;
+        
+    }
+    
+    public int getRandom() {
+        if(arr.size()>0)
+        {
+           Random rd=new Random();
+           int number=rd.nextInt(arr.size()) ;
+           return arr.get(number);
+        }
+        return -1;
+    }
+}
