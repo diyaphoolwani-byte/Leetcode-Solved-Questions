@@ -1,0 +1,45 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        
+        int j=1;
+        int lastindex=-1;
+        if(n>1){
+            while(j<n)
+            {
+                if(nums[j]>nums[j-1])
+                     lastindex=j;
+                j++;
+            }
+        }
+        //check if array is desc
+        if(lastindex==-1)
+        {
+            for(int i=0;i<n/2;i++)
+            {
+                   int temp=nums[i];
+                   nums[i]=nums[n-i-1];
+                   nums[n-i-1]=temp;
+            }
+        }
+        else
+        {
+             //1 2 3 5 4 2
+            int val=nums[lastindex];
+            int index=lastindex;
+            for(int i=lastindex;i<n;i++)
+            {
+                 if(nums[i]>nums[lastindex-1]  && nums[i]<nums[index])
+                    index=i;
+            }
+            int temp1=nums[lastindex-1];
+            nums[lastindex-1]=nums[index];
+            nums[index]=temp1;
+            Arrays.sort(nums,lastindex,n);
+
+        }   
+            
+    }
+
+
+}
