@@ -1,0 +1,23 @@
+class Solution {
+    public int addDigits(int num) {
+      int n=num;
+      int add=0;
+      int s=sum(n,add);
+      return s;
+    }
+    public static  int sum(int n1,int add)
+    {
+        while(n1>0)
+        {
+          int rem=n1%10;
+          System.out.print(rem);
+          add+=rem;
+          n1=n1/10;
+        }
+        if(add>9)
+        {
+          return sum(add,0);
+        }
+        return add;
+    }
+}
