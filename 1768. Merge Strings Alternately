@@ -1,0 +1,28 @@
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int i=0;//first part iterator
+        int j=0;//second part iterator;
+        int min=Math.min(word1.length(),word2.length());
+        StringBuilder s=new StringBuilder("");
+        while(i<min && j<min)
+        {
+              s.append(word1.charAt(i));
+              s.append(word2.charAt(j));
+              i++;
+              j++;
+        }
+
+        //left remaning part
+        while(i<word1.length())
+        {
+            s.append(word1.charAt(i++));
+        }
+        //rightpart
+        while(j<word2.length())
+        {
+            s.append(word2.charAt(j++));
+        }
+        
+        return s.toString();
+    }
+}
