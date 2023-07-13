@@ -1,0 +1,66 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+
+        if(head==null ||head.next==null)
+        {
+            return head;
+        }
+
+        //get the mid node
+        ListNode slow=head;
+        ListNode fast=head.next;
+        while(fast!=null  && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+
+        }
+
+        ListNode mid=slow;
+        ListNode righthead=mid.next;
+        mid.next=null;
+
+        ListNode leftpart=sortList(head);
+        ListNode rightpart=sortList(righthead);
+
+        return merge(leftpart,rightpart);
+
+    }
+
+    public  ListNode merge(ListNode leftpart,ListNode rightpart)
+    {
+           ListNode mergell=new ListNode(-1);
+           ListNode temp=mergell;
+           
+           while(leftpart!=null && rightpart!=null)
+           {
+               if(leftpart.val<=rightpart.val)
+               {
+                   temp.next=leftpart;
+                   leftpart=leftpart.next;
+                   temp=temp.next;
+               }else{
+                   temp.next=rightpart;
+                   rightpart=rightpart.next;
+                   temp=temp.next;
+               }
+           }
+
+           while(leftpart!=null)
+           {
+                   temp.next=leftpart;
+                   leftpart=leftpart.next;
+                   temp=temp.next;
+           }
+
+           while(rightpart!=null)
+           {
+               temp.next=rightpart;
+                   rightpart=rightpart.next;
+                   temp=temp.next;
+           }
+
+
+           return mergell.next;
+    }
+}
