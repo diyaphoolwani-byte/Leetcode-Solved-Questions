@@ -1,0 +1,29 @@
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head==null)
+        {
+            return head;
+        }
+        ListNode temp=head.next;
+        ListNode prev=head;
+        
+        ArrayList<Integer> arr=new ArrayList<>();
+        arr.add(head.val);
+
+        while(temp!=null)
+        {
+            if(!arr.contains(temp.val))
+            {
+                arr.add(temp.val);
+                temp=temp.next;
+                prev=prev.next;
+            }
+            else{
+                prev.next=temp.next;
+                temp=temp.next;
+            }
+        }
+
+        return head;
+    }
+}
