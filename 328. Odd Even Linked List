@@ -1,0 +1,48 @@
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+
+        if(head==null||head.next==null)
+        {
+            return head;
+        }
+        
+        ListNode node1=null;
+        ListNode tail=null;
+        ListNode node2=null;
+        ListNode tail2=null;
+        int count=1;
+
+        while(head!=null)
+        {
+            ListNode temp=head;
+            if(count%2!=0)
+            {
+                if(node1==null)
+                {
+                    node1=temp;
+                    tail=temp;
+                }else{
+                    tail.next=temp;
+                    tail=temp;
+                }
+            }else if(count%2==0)
+            {
+                if(node2==null)
+                {
+                    node2=temp;
+                    tail2=temp;
+                }else{
+                    tail2.next=temp;
+                    tail2=temp;
+                }
+            }
+
+            head=head.next;
+            count++;
+        }
+
+        tail2.next=null;
+        tail.next=node2;
+        return node1;
+    }
+}
