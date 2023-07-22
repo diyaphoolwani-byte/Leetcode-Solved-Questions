@@ -1,0 +1,40 @@
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root==null)
+        {
+            return false;
+        }
+
+        if(root.val==subRoot.val)
+        {
+            if(isidentical(root,subRoot))
+            {
+                return true;
+            }
+        }
+
+        return isSubtree(root.left,subRoot)||isSubtree(root.right,subRoot);
+    }
+
+    public static boolean isidentical(TreeNode node,TreeNode subroot)
+    {
+        if(node==null && subroot==null)
+        {
+            return true;
+        }else if(node==null||subroot==null||node.val!=subroot.val)
+        {
+            return false;
+        }
+
+        if(!isidentical(node.left,subroot.left))
+        {
+            return false;
+        }
+        if(!isidentical(node.right,subroot.right))
+        {
+            return false;
+        }
+
+        return true;
+    }
+}
